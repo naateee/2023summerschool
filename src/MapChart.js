@@ -11,45 +11,62 @@ import {
 
 const geoUrl = "/features.json";
 
-const colorScale = scaleLinear()
-  .domain([0.29, 0.68])
-  .range(["#ffedea", "#ff5233"]);
+// const colorScale = scaleLinear()
+//   .domain([3, 8])
+//   .range(["#ffedea", "#ff5233"]);
+
 
 const MapChart = () => {
   const [data, setData] = useState([]);
+  const [yearup, setYear] = useState('2023');
+  const [selectedOption, setSelectedOption] = useState("Life Ladder");
+
+  const colorScale = scaleLinear()
+  .domain([3, 8])
+  .range(["#ffedea", "#ff5233"]);
 
   useEffect(() => {
-    csv(`/vulnerability.csv`).then((data) => {
+    csv(`/WHR_stand.csv`).then((data) => {
       setData(data);
     });
   }, []);
 
   return (
-    <ComposableMap
+    <><ComposableMap
       projectionConfig={{
         rotate: [-10, 0, 0],
         scale: 147
       }}
-    >
+      >
       <Sphere stroke="#E4E5E6" strokeWidth={0.5} />
       <Graticule stroke="#E4E5E6" strokeWidth={0.5} />
       {data.length > 0 && (
-        <Geographies geography={geoUrl}>
-          {({ geographies }) =>
-            geographies.map((geo) => {
-              const d = data.find((s) => s.ISO3 === geo.id);
-              return (
-                <Geography
-                  key={geo.rsmKey}
-                  geography={geo}
-                  fill={d ? colorScale(d["2016"]) : "#F5F4F6"}
-                />
-              );
-            })
-          }
-        </Geographies>
+        <><Geographies geography={geoUrl}>
+          {({ geographies }) => geographies.map((geo) => {
+            const d = data.find((s) => s.ISO3 === geo.id && s.year === yearup);
+            return (
+              <Geography
+                key={geo.rsmKey}
+                geography={geo}
+                fill={d ? colorScale(d[selectedOption]) : "#F5F4F6"} />
+            );
+          })}
+        </Geographies></>
       )}
-    </ComposableMap>
+    </ComposableMap><div>
+        <label id="yearup">Year: {yearup}</label>
+        <input
+          type="range"
+          min="2008"
+          max="2023"
+          value={yearup}
+          onChange={e => setYear(e.target.value)} />
+      </div>
+      <select value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
+        <option value="Life Ladder">Life Ladder</option>
+        <option value="Log GDP per capita">Log GDP per capita</option>
+      </select>
+      </>
   );
 };
 
