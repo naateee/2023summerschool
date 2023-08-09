@@ -5,7 +5,7 @@ import React, { useRef, useEffect } from 'react';
 import * as d3 from 'd3'; 
 
 // 定义React组件，接收data参数
-const ScatterPlot = ({ data, colorScale, xAxis, yAxis, togglePoint, Xmax, Ymax}) => {
+const ScatterPlot = ({ data, regionColors, xAxis, yAxis, togglePoint, Xmax, Ymax}) => {
 
   //创建一个名为ref的引用，引用SVG元素
   const ref = useRef(); 
@@ -53,7 +53,7 @@ const ScatterPlot = ({ data, colorScale, xAxis, yAxis, togglePoint, Xmax, Ymax})
         .attr("cx", d => xScale(d.x))
         .attr("cy", d => yScale(d.y))
         .attr("r", d => d.isSelected ? 10 : 5)
-        .attr("fill", d => d.isSelected ? 'rgb(216, 255, 44)' : colorScale(d.region))
+        .attr("fill", d => d.isSelected ? 'rgb(216, 255, 44)' : regionColors[d.region])
         .attr("fill-opacity", d => d.isSelected ? 1 : 0.7)
         
         //鼠标互动事件
@@ -70,7 +70,7 @@ const ScatterPlot = ({ data, colorScale, xAxis, yAxis, togglePoint, Xmax, Ymax})
 
         //当鼠标离开点时，点的颜色变回初始颜色，并隐藏标签
         .on("mouseout", function(d) {
-          d3.select(this).attr("fill", d => colorScale(d.region));
+            d3.select(this).attr("fill", d => regionColors[d.region]);
           tooltip.style("visibility", "hidden");
         })
         //当点被点击时，调用togglePoint函数跟踪点
@@ -107,8 +107,8 @@ const ScatterPlot = ({ data, colorScale, xAxis, yAxis, togglePoint, Xmax, Ymax})
       .style("fill", "white")
       .text(yAxis);
       
-  }, [data, colorScale, xAxis, yAxis]);
-  //当data、colorScale、xAxis、yAxis其中任何一个变化时，重新运行这个函数
+  }, [data, xAxis, yAxis]);
+  //当data、xAxis、yAxis其中任何一个变化时，重新运行这个函数
 
   // 返回一个SVG元素，使用ref引用，以便在effect中选择
   return <svg ref={ref} width="800" height="600"></svg>;

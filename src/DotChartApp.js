@@ -17,7 +17,20 @@ function DotChartApp() {
   const [Ymax, setYmax] = useState([]);
   const [axesOptions, setAxesOptions] = useState([]);//所有可选的数据类型
   const [year, setYear] = useState('2023');//年份
-  const colorScale = d3.scaleOrdinal(d3.schemeCategory10); //颜色比例尺
+  const regionColors = {
+        "South Asia": "#1f77b4",
+        "Central and Eastern Europe": "#ff7f0e",
+        "Middle East and North Africa": "#2ca02c",
+        "Latin America and Caribbean": "#d62728",
+        "Sub-Saharan Africa": "#9467bd",
+        "Commonwealth of Independent States": "#8c564b",
+        "Eastern Europe and Central Asia": "#e377c2",
+        "North America and ANZ": "#7f7f7f",
+        "Western Europe": "#bcbd22",
+        "Southeast Asia": "#17becf",
+        "East Asia": "#ffa500",
+        "": "#ffe4e1"
+   };
 
   //在year、xAxis和yAxis更改时（选中的坐标轴数据类型变化时）重新运行
   useEffect(() => {
@@ -78,7 +91,7 @@ function DotChartApp() {
               ))}
             </select>
           </div>
-          <ScatterPlot data={data} colorScale={colorScale} xAxis={xAxis} yAxis={yAxis} togglePoint={togglePoint} Xmax={Xmax} Ymax={Ymax}/>
+                  <ScatterPlot data={data} regionColors={regionColors} xAxis={xAxis} yAxis={yAxis} togglePoint={togglePoint} Xmax={Xmax} Ymax={Ymax}/>
           <div>
             <label id = "year">Year: {year}</label>
             <input
