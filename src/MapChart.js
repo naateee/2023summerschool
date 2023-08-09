@@ -48,7 +48,23 @@ const MapChart = () => {
               <Geography
                 key={geo.rsmKey}
                 geography={geo}
-                fill={d ? colorScale(d[selectedOption]) : "#F5F4F6"} />
+                fill={d ? colorScale(d[selectedOption]) : "#F5F4F6"}
+                style={{
+                  default: {
+                    outline: "none"
+                  },
+                  hover: {
+                    outline: "none",
+                    stroke: "red",
+                    strokeWidth: 1
+                  },
+                  pressed: {
+                    outline: "none",
+                    stroke: "red",
+                    strokeWidth: 1
+                  },
+                }}
+              />
             );
           })}
         </Geographies></>

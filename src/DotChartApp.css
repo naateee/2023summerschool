@@ -1,26 +1,11 @@
-.App {
-  background-color:darkslategray;
-  text-align: center;
+#ScatterChartContainer{
+  position: relative;
+  width: 100%;
 }
 
-.App-header {
-  background-color:beige;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-h1 {
-  color: cadetblue;
-}
-
-#year {
-  font-size: 15px;
-  color:azure;
+#ScatterChartContainer svg {
+  width: 100%;
+  height: auto;
 }
 
 .axisLable {

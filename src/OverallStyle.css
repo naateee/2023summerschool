@@ -1,0 +1,34 @@
+html {
+    background-color: rgb(246, 253, 253);
+}
+
+.App {
+    background-color:rgb(223, 241, 255);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    padding:2vh;
+    border: 0.5vh solid rgb(122, 141, 168);
+    margin: 2vh;
+    border-radius: 2vh;
+  }
+  
+  .App-header {
+    text-align: left;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    padding-left:2vh;
+  }
+  
+  h1 {
+    text-align: left;
+    color: rgb(4, 18, 79);
+    font-size: 20px;
+  }
+
+  #year {
+    font-size: 15px;
+    color:rgb(0, 0, 0);
+  }

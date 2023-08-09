@@ -4,19 +4,33 @@ import ReactDOM from "react-dom";
 import "./index.css";
 
 import DotChartApp from './DotChartApp';
-
 import MapChart from "./MapChart";
+import './OverallStyle.css';
 
 function App() {
   return (
-    <div>
-      <div>
-        <MapChart />
+    <div className="flexbox">
+      <div id="leftpart">
+        <div id="leftupp" className="App">
+          <h3>
+            这里是控制面板
+          </h3>
+        </div>
+        <div className="App">
+          <MapChart />
+        </div>
       </div>
-      <div>
-        <DotChartApp />
+      <div id="rightpart">
+        <div id="rightupp" className="App">
+          <DotChartApp />
+        </div>
+        <div className="App">
+          <h3>
+            这里是折线图
+          </h3>
+        </div>
       </div>
-      </div>
+    </div>
   );
 }
 

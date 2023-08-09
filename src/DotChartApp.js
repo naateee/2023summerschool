@@ -68,12 +68,14 @@ function DotChartApp() {
   };
 
   return (
-    <div className="App"> 
+    <div> 
       <header className="App-header"> 
         <h1>
           ScatterPlot
         </h1>
-        <div className="App">
+        
+      </header>
+      <div>
           <div>
             <label className="axisLable">X-Axis: </label> 
             <select value={xAxis} onChange={e => setXAxis(e.target.value)}>
@@ -91,7 +93,9 @@ function DotChartApp() {
               ))}
             </select>
           </div>
-                  <ScatterPlot data={data} regionColors={regionColors} xAxis={xAxis} yAxis={yAxis} togglePoint={togglePoint} Xmax={Xmax} Ymax={Ymax}/>
+          <div id="ScatterChartContainer">
+            <ScatterPlot data={data} regionColors={regionColors} xAxis={xAxis} yAxis={yAxis} togglePoint={togglePoint} Xmax={Xmax} Ymax={Ymax} preserveAspectRatio="xMidYMid meet"/>
+          </div>     
           <div>
             <label id = "year">Year: {year}</label>
             <input
@@ -104,7 +108,6 @@ function DotChartApp() {
           </div>
           <br />
         </div>
-      </header>
     </div>
   );
 }

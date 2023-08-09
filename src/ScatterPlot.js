@@ -91,7 +91,7 @@ const ScatterPlot = ({ data, regionColors, xAxis, yAxis, togglePoint, Xmax, Ymax
       .attr("text-anchor", "end")
       .attr("x", 0.9 * width)
       .attr("y", -6)
-      .style("fill", "white")
+      .style("fill", "black")
       .text(xAxis);
 
     //y轴标签
@@ -104,14 +104,14 @@ const ScatterPlot = ({ data, regionColors, xAxis, yAxis, togglePoint, Xmax, Ymax
       .attr("dy", ".75em")
       //竖直显示
       .attr("transform", "rotate(-90)")
-      .style("fill", "white")
+      .style("fill", "black")
       .text(yAxis);
       
   }, [data, xAxis, yAxis]);
   //当data、xAxis、yAxis其中任何一个变化时，重新运行这个函数
 
   // 返回一个SVG元素，使用ref引用，以便在effect中选择
-  return <svg ref={ref} width="800" height="600"></svg>;
+  return <svg ref={ref} width="300" height="300"></svg>;
 };
 
 // 导出 ScatterPlot 组件
