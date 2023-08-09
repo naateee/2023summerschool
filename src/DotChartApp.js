@@ -2,6 +2,7 @@
 
 //导入所需库、样式文件和已创建的组件
 import React, { useState, useEffect } from 'react';
+import Select from 'react-select';
 import './DotChartApp.css';
 import * as d3 from 'd3';
 import ScatterPlot from './ScatterPlot';
@@ -15,8 +16,12 @@ function DotChartApp() {
   const [yAxis, setYAxis] = useState('Life Ladder');//y轴数据类型
   const [Xmax, setXmax] = useState([]);
   const [Ymax, setYmax] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCountries, setSelectedCountries] = useState([]);//国家筛选器
+  const [allCountries, setAllCountries] = useState([]);
   const [axesOptions, setAxesOptions] = useState([]);//所有可选的数据类型
   const [year, setYear] = useState('2023');//年份
+  const countryOptions = allCountries.map(country => ({ value: country, label: country }));
   const regionColors = {
         "South Asia": "#1f77b4",
         "Central and Eastern Europe": "#ff7f0e",
@@ -45,8 +50,12 @@ function DotChartApp() {
       setXmax(d3.max(data, d => d[xAxis]));
       setYmax(d3.max(data, d => d[yAxis]));
 
-      //根据选择的年份过滤数据并使用map函数处理数据中的每一项
-      const processedData = data.filter(item => item['year'] === year && item[xAxis] && item[yAxis]).map(item => ({
+      // 提取所有国家的列表并设置到 allCountries 状态中
+      const allCountriesList = Array.from(new Set(data.map(item => item['Country name'])));
+      setAllCountries(allCountriesList);
+
+      //根据选择的年份和国家过滤数据并使用map函数处理数据中的每一项
+      const processedData = data.filter(item => item['year'] === year && item[xAxis] && item[yAxis] && (selectedCountries.length === 0 || selectedCountries.includes(item['Country name']))).map(item => ({
         country: item['Country name'],
         region: item['Regional indicator'],
         x: item[xAxis],
@@ -57,7 +66,7 @@ function DotChartApp() {
       //设置data状态为处理后的数据
       setData(processedData);
     });
-  }, [xAxis, yAxis, year, selectedPoints]);
+  }, [xAxis, yAxis, year, selectedPoints, selectedCountries]);
 
   // 更新点的选中状态
   const togglePoint = (country) => {
@@ -76,6 +85,15 @@ function DotChartApp() {
         
       </header>
       <div>
+          <div>
+            <label className="axisLable">Country: </label>
+            <Select 
+              isMulti
+              value={selectedCountries.map(country => ({ value: country, label: country }))}
+              onChange={selectedOptions => setSelectedCountries(selectedOptions.map(option => option.value))}
+              options={countryOptions}
+            />
+          </div>
           <div>
             <label className="axisLable">X-Axis: </label> 
             <select value={xAxis} onChange={e => setXAxis(e.target.value)}>
