@@ -23,7 +23,7 @@ function DotChartApp() {
   useEffect(() => {
 
     //读取CSV文件，处理返回的数据
-    d3.csv('WHR_all.csv').then(data => {
+    d3.csv('WHR_NEW.csv').then(data => {
       // 获取CSV文件的所有列，过滤掉'Country name'和'Regional indicator'，设置axesOptions状态
       const columns = data.columns;
       setAxesOptions(columns.filter(column => column !== 'Country name' && column !== 'Regional indicator' && column !== 'year'));
