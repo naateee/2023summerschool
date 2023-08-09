@@ -1,10 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\update1",
-    "\\update1\\public",
-    "\\update1\\src"
+    "\\public",
+    "\\src"
   ],
-  "SelectedNode": "\\update1\\src",
+  "SelectedNode": "\\src\\DotChartApp.js",
   "PreviewInSolutionExplorer": false
 }

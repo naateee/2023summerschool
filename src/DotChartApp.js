@@ -106,7 +106,6 @@ function DotChartApp() {
               onChange={e => setYear(e.target.value)}
             />
           </div>
-          <br />
         </div>
     </div>
   );

@@ -52,14 +52,14 @@ const ScatterPlot = ({ data, regionColors, xAxis, yAxis, togglePoint, Xmax, Ymax
       .append("circle")
         .attr("cx", d => xScale(d.x))
         .attr("cy", d => yScale(d.y))
-        .attr("r", d => d.isSelected ? 10 : 5)
-        .attr("fill", d => d.isSelected ? 'rgb(216, 255, 44)' : regionColors[d.region])
-        .attr("fill-opacity", d => d.isSelected ? 1 : 0.7)
+        .attr("r", d => d.isSelected ? 7 : 3.5)
+        .attr("fill", d => d.isSelected ? 'rgb(125, 16, 58)' : regionColors[d.region])
+        .attr("fill-opacity", d => d.isSelected ? 1 : 0.6)
         
         //鼠标互动事件
         //当鼠标悬停在点上时，点的颜色变为亮黄色，并显示具体数值标签
         .on("mouseover", function(event, d) {
-          d3.select(this).attr("fill", "lightgoldenrodyellow");
+          d3.select(this).attr("fill", "rgb(255, 240, 243)");
           tooltip.html(`<strong>${d.country}</strong><br/>Region: ${d.region}<br/>${xAxis}: ${d.x}<br/>${yAxis}: ${d.y}`);
           tooltip.style("visibility", "visible");
         })
