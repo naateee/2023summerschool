@@ -53,7 +53,7 @@ const ScatterPlot = ({ data, regionColors, xAxis, yAxis, togglePoint, Xmax, Ymax
         .attr("cx", d => xScale(d.x))
         .attr("cy", d => yScale(d.y))
         .attr("r", d => d.isSelected ? 8 : 4)
-        .attr("fill", d => d.isSelected ? 'rgb(183, 255, 0)' : regionColors[d.region])
+        .attr("fill", d => regionColors[d.region])
         .attr("fill-opacity", d => d.isSelected ? 1 : 0.6)
         
         //鼠标互动事件

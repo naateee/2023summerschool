@@ -11,14 +11,14 @@ function LineChart({ xAxis, yAxis, country}) {
 
             // 清除历史记录
             svg.selectAll("*").remove();
-            console.log("country: %s", country);
+            console.log("country:", country);
             if (country == null) {
                 console.log("no element");
                 return;
             }
 
             // 过滤缺失值
-            const filteredData = data.filter(d => d[xAxis] !== null && d[yAxis] !== null && d['Country name'] === country);
+            const filteredData = data.filter(d => d[xAxis] !== null && d[yAxis] !== null && country.some(option => option.label === (d['Country name'])));
 
             // 定义尺度
             const xScale = d3.scaleLinear()
@@ -32,19 +32,54 @@ function LineChart({ xAxis, yAxis, country}) {
             const yScale = d3.scaleLinear()
                 .domain([0, d3.max(filteredData, d => +d[yAxis])])
                 .range([250, 50]); // 留出空间用于坐标轴的标签
+            
+            //线标签
+            const tooltip = d3.select("body").append("div")
+            .style("position", "absolute")
+            //初始时设置为隐藏
+            .style("visibility", "hidden")
+            .style("background", "#f9f9f9")
+            .style("border", "solid")
+            .style("border-width", "1px")
+            .style("border-radius", "5px")
+            .style("padding", "10px")
+            //标签文字可以换行
+            .style("white-space", "pre-wrap");
 
             // 定义线生成器
             const line = d3.line()
                 .x(d => xScale(+d[xAxis]))
                 .y(d => yScale(+d[yAxis]));
-
+            
             // 绘制线
-            svg.append("path")
-                .datum(filteredData)
+            const colors = d3.schemeCategory10;
+            country.forEach((C,i)=>{
+                var refilteredData
+                svg.append("path")
+                .datum(refilteredData=filteredData.filter(d => C.label === (d['Country name'])))
                 .attr("fill", "none")
-                .attr("stroke", "#0000FF") // 将线条颜色设为亮蓝色
+                .attr("stroke", colors[i]) // 将线条颜色设为随机颜色
                 .attr("stroke-width", 1.5)
-                .attr("d", line);
+                .attr("d", line)
+                //鼠标互动事件
+                //鼠标停留显示具体信息
+                .on("mouseover", function(event) {
+                    d3.select(this).attr("stroke", "rgb(255, 240, 243)");
+                    tooltip.html(`<strong>${C.label}</strong><br/>Region: ${refilteredData[0]['Regional indicator']}`);
+                    tooltip.style("visibility", "visible");
+                })
+                //设置提示框的位置，跟随鼠标移动
+                .on("mousemove", function(event) {
+                    tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");
+                })
+        
+                //当鼠标离开点时，点的颜色变回初始颜色，并隐藏标签
+                .on("mouseout", function() {
+                    d3.select(this).attr("stroke", colors[i]);
+                    tooltip.style("visibility", "hidden");
+                });
+            })
+            
 
             // 定义坐标轴
             const xAxisD3 = d3.axisBottom(xScale);

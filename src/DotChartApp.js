@@ -133,15 +133,7 @@ function DotChartApp() {
             />
           </div>
           <div>
-            <label className="selector">select a country: </label>
-            <Select 
-              value={lineCountry ? {value: lineCountry, label: lineCountry} : null}
-              onChange={selectedOption => setLineCountry(selectedOption.value)}
-              options={selectedCountriesName}
-            />
-          </div>
-          <div>
-            <LineChart xAxis={'year'} yAxis={yAxis} country={lineCountry}/>
+            <LineChart xAxis={'year'} yAxis={yAxis} country={selectedCountriesName}/>
           </div>
         </div>
         
