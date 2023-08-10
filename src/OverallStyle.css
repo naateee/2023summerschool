@@ -13,6 +13,7 @@ html {
     border: 0.5vh solid rgb(122, 141, 168);
     margin: 1.5vh;
     border-radius: 2vh;
+    height: 80vh;
   }
   
   .App-header {

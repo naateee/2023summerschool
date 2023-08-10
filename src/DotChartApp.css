@@ -3,10 +3,10 @@
   width: 100%;
 }
 
-#ScatterChartContainer svg {
+/* #ScatterChartContainer svg {
   width: 100%;
-  height: auto;
-}
+  height:auto;
+} */
 
 .axisLable {
   color:rgb(2, 44, 80);

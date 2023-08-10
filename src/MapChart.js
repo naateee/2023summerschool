@@ -12,17 +12,15 @@ import {
 
 const geoUrl = "/features.json";
 
-// const colorScale = scaleLinear()
-//   .domain([3, 8])
-//   .range(["#ffedea", "#ff5233"]);
 
-var x;
+var x,y;
 function MapChart() {
   const [data, setData] = useState([]);
   const [yearup, setYear] = useState('2023');
-  const [selectedOption, setSelectedOption] = useState("Life Ladder");
+  const [selectedOption, setSelectedOption] = useState("LifeLadder");
   const [Country,setcountry] = useState();
   const [countryla,setcountryla] = useState();
+  const [lad,setlad] = useState();
   const colorScale = scaleLinear()
     .domain([3, 8])
     .range(["#ffedea", "#ff5233"]);
@@ -35,13 +33,14 @@ function MapChart() {
 
   const change = () => {
     setcountry(Country => x);
+    setlad(lad => y);
   };
 
   return (
     <><ComposableMap
       projectionConfig={{
         rotate: [-10, 0, 0],
-        scale: 150
+        scale: 170
       }}
     >
       <Sphere stroke="#E4E5E6" strokeWidth={0.5} />
@@ -53,6 +52,7 @@ function MapChart() {
             function handleClick() {
               // alert(geo.properties.name)
               x = geo.properties.name;
+              y = d.LifeLadder ;
               change();
               // alert(x);
             }
@@ -83,7 +83,7 @@ function MapChart() {
         </Geographies></>
       )}
     </ComposableMap><div>
-        <label>Country:{Country}</label>
+        <label>Country:{Country} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Life Ladder:{lad}</label>
         <br></br>
         <label >Year: {yearup}</label>
         <input
@@ -94,7 +94,7 @@ function MapChart() {
           onChange={e => setYear(e.target.value)} />
       </div>
       <select value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
-        <option value="Life Ladder">Life Ladder</option>
+        <option value="LifeLadder">Life Ladder</option>
         <option value="Log GDP per capita">Log GDP per capita</option>
       </select>
     </>
