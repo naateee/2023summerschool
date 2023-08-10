@@ -59,7 +59,7 @@ function LineChart({ xAxis, yAxis, country}) {
                 .datum(refilteredData=filteredData.filter(d => C.label === (d['Country name'])))
                 .attr("fill", "none")
                 .attr("stroke", colors[i]) // 将线条颜色设为随机颜色
-                .attr("stroke-width", 1.5)
+                .attr("stroke-width", 3.5)
                 .attr("d", line)
                 //鼠标互动事件
                 //鼠标停留显示具体信息

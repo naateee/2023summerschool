@@ -1,54 +1,70 @@
 html {
-    background-color: rgb(246, 253, 253);
+  background-color: rgb(246, 253, 253);
 }
 
 .App {
-    background-color:rgb(223, 241, 255);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    justify-content: center;
-    padding:1.5vh;
-    border: 0.5vh solid rgb(122, 141, 168);
-    margin: 1.5vh;
-    border-radius: 2vh;
-    height: 80vh;
-  }
-  
-  .App-header {
-    text-align: left;
-    font-size: calc(10px + 2vmin);
-    color: rgb(255, 255, 255);
-    padding:0 0 0 2vh;
-    height:2vh;
-  }
-  
-  h1 {
-    text-align: left;
-    color: rgb(4, 18, 79);
-    font-size: 3vh;
-    text-align:center;
-    background-color:rgb(223, 241, 255);
-  }
+  background-color: rgb(223, 241, 255);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  padding: 1.5vh;
+  border: 0.5vh solid rgb(122, 141, 168);
+  margin: 1.5vh;
+  border-radius: 2vh;
+  height: 80vh;
+}
 
-  b{
-    text-align:center;
-    margin-left: 2vh;
-    font-size: 4vh;
-  }
-  
-  h2 {
-    text-align: left;
-    color: rgb(4, 18, 79);
-    font-size: 2vh;
-    height:0.5vh;
-    border:0 0 0 0;
-    padding:0 0 0 0;
-    margin:0 0 0 0;
-  }
+.Apps {
+  background-color:rgb(223, 241, 255);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  padding:1.5vh;
+  border: 0.5vh solid rgb(122, 141, 168);
+  margin: 1.5vh;
+  border-radius: 2vh;
+  height: 9vh;
+}
 
-  #year {
-    font-size: 15px;
-    color:rgb(0, 0, 0);
-  }
+
+
+.App-header {
+  text-align: left;
+  font-size: calc(10px + 2vmin);
+  color: rgb(255, 255, 255);
+  padding: 0 0 0 2vh;
+  height: 2vh;
+}
+
+h1 {
+  text-align: left;
+  color: rgb(4, 18, 79);
+  font-size: 3vh;
+  text-align: center;
+  background-color: rgb(223, 241, 255);
+}
+
+b {
+  text-align: center;
+  margin-left: 2vh;
+  font-size: 4vh;
+}
+
+h2 {
+  text-align: left;
+  color: rgb(4, 18, 79);
+  font-size: 2vh;
+  height: 0.5vh;
+  border: 0 0 0 0;
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+}
+
+#year {
+  font-size: 15px;
+  color: rgb(0, 0, 0);
+}
