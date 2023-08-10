@@ -31,7 +31,7 @@ function LineChart({ xAxis, yAxis, country}) {
             console.log("[%d, %d]", 0, d3.max(filteredData, d => +d[yAxis]));
             const yScale = d3.scaleLinear()
                 .domain([0, d3.max(filteredData, d => +d[yAxis])])
-                .range([350, 50]); // 留出空间用于坐标轴的标签
+                .range([250, 50]); // 留出空间用于坐标轴的标签
 
             // 定义线生成器
             const line = d3.line()
@@ -52,7 +52,7 @@ function LineChart({ xAxis, yAxis, country}) {
 
             // 绘制x轴
             svg.append("g")
-                .attr("transform", "translate(0, 350)") // 定位坐标轴
+                .attr("transform", "translate(0, 250)") // 定位坐标轴
                 .call(xAxisD3)
                 .attr("color", "black"); // 将线条颜色设为黑色
 
@@ -68,7 +68,8 @@ function LineChart({ xAxis, yAxis, country}) {
                 .append("text")
                 .attr("class", "y label")
                 .attr("text-anchor", "end")
-                .attr("y", 6)
+                .attr("y", 20)
+                .attr("x", -50)
                 .attr("dy", ".75em")
                 //竖直显示
                 .attr("transform", "rotate(-90)")
@@ -78,7 +79,7 @@ function LineChart({ xAxis, yAxis, country}) {
     }, [xAxis, yAxis, country]);
 
     return (
-        <svg ref={svgRef} width="350" height="400"></svg>
+        <svg ref={svgRef} width="350" height="300"></svg>
     );
 }
 

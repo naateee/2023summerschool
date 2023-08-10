@@ -111,7 +111,7 @@ const ScatterPlot = ({ data, regionColors, xAxis, yAxis, togglePoint, Xmax, Ymax
   //当data、xAxis、yAxis其中任何一个变化时，重新运行这个函数
 
   // 返回一个SVG元素，使用ref引用，以便在effect中选择
-  return <svg ref={ref} width="450" height="450"></svg>;
+  return <svg ref={ref} width="350" height="250"></svg>;
 };
 
 // 导出 ScatterPlot 组件

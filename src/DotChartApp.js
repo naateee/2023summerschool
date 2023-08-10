@@ -44,9 +44,9 @@ function DotChartApp() {
 
     //读取CSV文件，处理返回的数据
     d3.csv('WHR_NEW.csv').then(data => {
-      // 获取CSV文件的所有列，过滤掉'Country name'和'Regional indicator'，设置axesOptions状态
+      // 获取CSV文件的所有列，过滤掉'ISO3','Country name'和'Regional indicator'，设置axesOptions状态
       const columns = data.columns;
-      setAxesOptions(columns.filter(column => column !== 'Country name' && column !== 'Regional indicator' && column !== 'year'));
+      setAxesOptions(columns.filter(column => column !== 'ISO3' && column !== 'Country name' && column !== 'Regional indicator' && column !== 'year'));
 
       //获取最大值以确定坐标轴范围
       setXmax(d3.max(data, d => d[xAxis]));
@@ -87,9 +87,9 @@ function DotChartApp() {
   return (
     <div> 
       <header className="App-header"> 
-        <h1>
+        <h2>
           ScatterPlot
-        </h1>
+        </h2>
         
       </header>
       <div>

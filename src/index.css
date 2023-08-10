@@ -20,12 +20,11 @@ body {
 #rightpart {
   width:30%;
   height:90%;
+  margin:-2vh 1.5vh -2vh 1.5vh;
+  padding-top:2.5vh;
 }
 
 #leftupp{
   height:10%;
-}
-
-#rightupp{
-  height:60%
+  margin:-2vh 1.5vh 1.5vh -2vh;
 }

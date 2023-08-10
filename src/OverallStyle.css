@@ -9,9 +9,9 @@ html {
     flex-direction: column;
     align-items: left;
     justify-content: center;
-    padding:2vh;
+    padding:1.5vh;
     border: 0.5vh solid rgb(122, 141, 168);
-    margin: 2vh;
+    margin: 1.5vh;
     border-radius: 2vh;
   }
   
@@ -19,13 +19,32 @@ html {
     text-align: left;
     font-size: calc(10px + 2vmin);
     color: rgb(255, 255, 255);
-    padding-left:2vh;
+    padding:0 0 0 2vh;
+    height:2vh;
   }
   
   h1 {
     text-align: left;
     color: rgb(4, 18, 79);
-    font-size: 20px;
+    font-size: 3vh;
+    text-align:center;
+    background-color:rgb(223, 241, 255);
+  }
+
+  b{
+    text-align:center;
+    margin-left: 2vh;
+    font-size: 4vh;
+  }
+  
+  h2 {
+    text-align: left;
+    color: rgb(4, 18, 79);
+    font-size: 2vh;
+    height:0.5vh;
+    border:0 0 0 0;
+    padding:0 0 0 0;
+    margin:0 0 0 0;
   }
 
   #year {

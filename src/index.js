@@ -12,15 +12,17 @@ function App() {
     <div className="flexbox">
       <div id="leftpart">
         <div id="leftupp" className="App">
-          <h3>
-            这里是控制面板
-          </h3>
+        <h1>
+          <b>
+            World Happiness Report Visualization
+          </b>
+        </h1>
         </div>
         <div className="App">
           <MapChart />
         </div>
       </div>
-      <div id="rightpart">
+      <div id="rightpart" className="App">
           <DotChartApp />
         </div>
       </div>
