@@ -34,7 +34,7 @@ function MapChart({year}) {
     setcountry(Country => x);
     setlad(lad => y);
   };
-
+//点击地区使x,y值改变，触发change函数，钩子挂的Country和lad改变，重新渲染
   return (
     <><ComposableMap
       projectionConfig={{
@@ -43,6 +43,7 @@ function MapChart({year}) {
       }}
     >
       <Sphere stroke="#E4E5E6" strokeWidth={0.5} />
+      {/* 经纬线 */}
       <Graticule stroke="#E4E5E6" strokeWidth={0.5} />
       {data.length > 0 && (
         <><Geographies geography={geoUrl}>
@@ -87,6 +88,7 @@ function MapChart({year}) {
       <select value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
         <option value="LifeLadder">Life Ladder</option>
         <option value="Log GDP per capita">Log GDP per capita</option>
+        <option value="Healthy life expectancy at birth">Healthy life expectancy at birth</option>
       </select>
     </>
   );
