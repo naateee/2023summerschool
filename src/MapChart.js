@@ -14,9 +14,8 @@ const geoUrl = "/features.json";
 
 
 var x,y;
-function MapChart() {
+function MapChart({year}) {
   const [data, setData] = useState([]);
-  const [yearup, setYear] = useState('2023');
   const [selectedOption, setSelectedOption] = useState("LifeLadder");
   const [Country,setcountry] = useState();
   const [countryla,setcountryla] = useState();
@@ -48,7 +47,7 @@ function MapChart() {
       {data.length > 0 && (
         <><Geographies geography={geoUrl}>
           {({ geographies }) => geographies.map((geo) => {
-            const d = data.find((s) => s.ISO3 === geo.id && s.year === yearup);
+            const d = data.find((s) => s.ISO3 === geo.id && s.year === year);
             function handleClick() {
               // alert(geo.properties.name)
               x = geo.properties.name;
@@ -84,14 +83,6 @@ function MapChart() {
       )}
     </ComposableMap><div>
         <label>Country:{Country} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Life Ladder:{lad}</label>
-        <br></br>
-        <label >Year: {yearup}</label>
-        <input
-          type="range"
-          min="2008"
-          max="2023"
-          value={yearup}
-          onChange={e => setYear(e.target.value)} />
       </div>
       <select value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
         <option value="LifeLadder">Life Ladder</option>

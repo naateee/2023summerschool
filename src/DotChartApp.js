@@ -8,7 +8,7 @@ import * as d3 from 'd3';
 import ScatterPlot from './ScatterPlot';
 import LineChart from './LineChart';
 
-function DotChartApp() {
+function DotChartApp(year) {
 
   //使用useState创建变量
   const [data, setData] = useState([]);//数据
@@ -20,7 +20,7 @@ function DotChartApp() {
   const [selectedCountries, setSelectedCountries] = useState([]);//国家筛选器
   const [allCountries, setAllCountries] = useState([]);
   const [axesOptions, setAxesOptions] = useState([]);//所有可选的数据类型
-  const [year, setYear] = useState('2023');//年份
+  //const [year, setYear] = useState('2023');//年份
   const [selectedCountriesName, setSelectedCountriesName] = useState([]) // 所有被选中待显示的国家名称
   const [lineCountry, setLineCountry] = useState(null);
   const countryOptions = allCountries.map(country => ({ value: country, label: country }));
@@ -57,7 +57,7 @@ function DotChartApp() {
       setAllCountries(allCountriesList);
 
       //根据选择的年份和国家过滤数据并使用map函数处理数据中的每一项
-      const processedData = data.filter(item => item['year'] === year && item[xAxis] && item[yAxis] && (selectedCountries.length === 0 || selectedCountries.includes(item['Country name']))).map(item => ({
+      const processedData = data.filter(item => item['year'] === year['year'] && item[xAxis] && item[yAxis] && (selectedCountries.length === 0 || selectedCountries.includes(item['Country name']))).map(item => ({
         country: item['Country name'],
         region: item['Regional indicator'],
         x: item[xAxis],
@@ -122,16 +122,7 @@ function DotChartApp() {
           <div id="ScatterChartContainer">
             <ScatterPlot data={data} regionColors={regionColors} xAxis={xAxis} yAxis={yAxis} togglePoint={togglePoint} Xmax={Xmax} Ymax={Ymax} preserveAspectRatio="xMidYMid meet"/>
           </div>
-          <div>
-            <label id = "year">Year: {year}</label>
-            <input
-              type="range"
-              min="2008"
-              max="2023"
-              value={year}
-              onChange={e => setYear(e.target.value)}
-            />
-          </div>
+          
           <div>
             <LineChart xAxis={'year'} yAxis={yAxis} country={selectedCountriesName}/>
           </div>
