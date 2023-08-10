@@ -213,6 +213,7 @@
             "type": "MultiPolygon",
             "arcs": [
               [[173]],
+              [[674]],
               [
                 [
                   174,
@@ -1168,7 +1169,7 @@
           },
           {
             "type": "Polygon",
-            "arcs": [[674]],
+            "arcs": [],
             "id": "TWN",
             "properties": { "name": "Taiwan" }
           },
