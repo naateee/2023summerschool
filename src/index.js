@@ -21,16 +21,9 @@ function App() {
         </div>
       </div>
       <div id="rightpart">
-        <div id="rightupp" className="App">
           <DotChartApp />
         </div>
-        <div className="App">
-          <h3>
-            这里是折线图
-          </h3>
-        </div>
       </div>
-    </div>
   );
 }
 

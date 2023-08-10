@@ -6,6 +6,7 @@ import Select from 'react-select';
 import './DotChartApp.css';
 import * as d3 from 'd3';
 import ScatterPlot from './ScatterPlot';
+import LineChart from './LineChart';
 
 function DotChartApp() {
 
@@ -16,11 +17,12 @@ function DotChartApp() {
   const [yAxis, setYAxis] = useState('Life Ladder');//y轴数据类型
   const [Xmax, setXmax] = useState([]);
   const [Ymax, setYmax] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
   const [selectedCountries, setSelectedCountries] = useState([]);//国家筛选器
   const [allCountries, setAllCountries] = useState([]);
   const [axesOptions, setAxesOptions] = useState([]);//所有可选的数据类型
   const [year, setYear] = useState('2023');//年份
+  const [selectedCountriesName, setSelectedCountriesName] = useState([]) // 所有被选中待显示的国家名称
+  const [lineCountry, setLineCountry] = useState(null);
   const countryOptions = allCountries.map(country => ({ value: country, label: country }));
   const regionColors = {
         "South Asia": "#1f77b4",
@@ -65,15 +67,21 @@ function DotChartApp() {
 
       //设置data状态为处理后的数据
       setData(processedData);
+
+      // 更新折线图数据
+      setSelectedCountriesName(processedData.filter(item => item['isSelected'] === true).map(item => ({
+        value: item['country'],
+        label: item['country']
+     })));
     });
-  }, [xAxis, yAxis, year, selectedPoints, selectedCountries]);
+  }, [xAxis, yAxis, year, selectedPoints, selectedCountries, lineCountry]);
 
   // 更新点的选中状态
   const togglePoint = (country) => {
     setSelectedPoints(prevSelectedPoints => ({
       ...prevSelectedPoints,
       [country]: !prevSelectedPoints[country]
-    }));
+    }));  
   };
 
   return (
@@ -86,7 +94,7 @@ function DotChartApp() {
       </header>
       <div>
           <div>
-            <label className="axisLable">Country: </label>
+            <label className="selector">Country: </label>
             <Select 
               isMulti
               value={selectedCountries.map(country => ({ value: country, label: country }))}
@@ -113,7 +121,7 @@ function DotChartApp() {
           </div>
           <div id="ScatterChartContainer">
             <ScatterPlot data={data} regionColors={regionColors} xAxis={xAxis} yAxis={yAxis} togglePoint={togglePoint} Xmax={Xmax} Ymax={Ymax} preserveAspectRatio="xMidYMid meet"/>
-          </div>     
+          </div>
           <div>
             <label id = "year">Year: {year}</label>
             <input
@@ -124,7 +132,19 @@ function DotChartApp() {
               onChange={e => setYear(e.target.value)}
             />
           </div>
+          <div>
+            <label className="selector">select a country: </label>
+            <Select 
+              value={lineCountry ? {value: lineCountry, label: lineCountry} : null}
+              onChange={selectedOption => setLineCountry(selectedOption.value)}
+              options={selectedCountriesName}
+            />
+          </div>
+          <div>
+            <LineChart xAxis={'year'} yAxis={yAxis} country={lineCountry}/>
+          </div>
         </div>
+        
     </div>
   );
 }

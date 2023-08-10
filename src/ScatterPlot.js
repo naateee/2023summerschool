@@ -52,12 +52,12 @@ const ScatterPlot = ({ data, regionColors, xAxis, yAxis, togglePoint, Xmax, Ymax
       .append("circle")
         .attr("cx", d => xScale(d.x))
         .attr("cy", d => yScale(d.y))
-        .attr("r", d => d.isSelected ? 7 : 3.5)
-        .attr("fill", d => d.isSelected ? 'rgb(125, 16, 58)' : regionColors[d.region])
+        .attr("r", d => d.isSelected ? 8 : 4)
+        .attr("fill", d => d.isSelected ? 'rgb(183, 255, 0)' : regionColors[d.region])
         .attr("fill-opacity", d => d.isSelected ? 1 : 0.6)
         
         //鼠标互动事件
-        //当鼠标悬停在点上时，点的颜色变为亮黄色，并显示具体数值标签
+        //当鼠标悬停在点上时，点的颜色变为亮粉色，并显示具体数值标签
         .on("mouseover", function(event, d) {
           d3.select(this).attr("fill", "rgb(255, 240, 243)");
           tooltip.html(`<strong>${d.country}</strong><br/>Region: ${d.region}<br/>${xAxis}: ${d.x}<br/>${yAxis}: ${d.y}`);
@@ -111,7 +111,7 @@ const ScatterPlot = ({ data, regionColors, xAxis, yAxis, togglePoint, Xmax, Ymax
   //当data、xAxis、yAxis其中任何一个变化时，重新运行这个函数
 
   // 返回一个SVG元素，使用ref引用，以便在effect中选择
-  return <svg ref={ref} width="300" height="300"></svg>;
+  return <svg ref={ref} width="450" height="450"></svg>;
 };
 
 // 导出 ScatterPlot 组件
